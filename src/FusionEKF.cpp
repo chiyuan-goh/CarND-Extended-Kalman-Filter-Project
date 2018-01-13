@@ -116,7 +116,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      ****************************************************************************/
 
     if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
-        return;
+//return;
         cout << "reading radar" << endl;
         // Radar updates
         ekf_.R_ = R_radar_;
