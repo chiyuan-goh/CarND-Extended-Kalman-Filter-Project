@@ -26,6 +26,7 @@ void KalmanFilter::Predict() {
 }
 
 void KalmanFilter::Update(const VectorXd &z) {
+    //TODO: need to normalise angles
     VectorXd y = z - (H_ * x_);
     MatrixXd S = H_* P_  * H_.transpose() + R_;
     MatrixXd K = P_ * H_.transpose() * S.inverse();
@@ -41,6 +42,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     double x = x_(0), y = x_(1), vx = x_(2), vy = x_(3);
     double term = sqrt(x * x + y * y);
     hx << term, atan2(y, x), (x * vx  + y * vy) / term;
+    //TODO: need to normalise angles
     VectorXd Y = z - hx;
 
     MatrixXd S = H_ * P_ * H_.transpose() + R_;
